@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Product; // Ensure the Product model is imported
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,6 +23,7 @@ class ProductFactory extends Factory
     {
         $name = $this->faker->words(3, true);
         return [
+            'category_id' => Category::inRandomOrder()->first()->id,
             'name' => $name,
             'slug' => Str::slug($name),
             'description' => $this->faker->paragraph(),
