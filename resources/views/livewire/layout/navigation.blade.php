@@ -48,11 +48,6 @@ new class extends Component
                         </x-nav-link>
                     @endif
 
-                    <x-nav-link :href="route('checkout')" :active="request()->routeIs('checkout')" wire:navigate>
-                        Giỏ hàng
-                    </x-nav-link>  <x-nav-link :href="route('user.orders')" :active="request()->routeIs('user.orders')" wire:navigate>
-                        Lịch sử đơn hàng
-                    </x-nav-link>
                 </div>
             </div>
 
@@ -123,7 +118,7 @@ new class extends Component
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user.orders')" :active="request()->routeIs('user.orders')" wire:navigate>
                 Lịch sử đơn hàng
-            </x-responsive-nav-link>    
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
