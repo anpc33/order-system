@@ -121,13 +121,15 @@ new class extends Component
                 <x-responsive-nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')" wire:navigate>
                     Quản lý đơn hàng
                 </x-responsive-nav-link>
+                @else
+                <x-responsive-nav-link :href="route('checkout')" :active="request()->routeIs('checkout')" wire:navigate>
+                    Giỏ hàng
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('user.orders')" :active="request()->routeIs('user.orders')" wire:navigate>
+                    Lịch sử đơn hàng
+                </x-responsive-nav-link>
             @endif
-            <x-responsive-nav-link :href="route('checkout')" :active="request()->routeIs('checkout')" wire:navigate>
-                Giỏ hàng
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('user.orders')" :active="request()->routeIs('user.orders')" wire:navigate>
-                Lịch sử đơn hàng
-            </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
