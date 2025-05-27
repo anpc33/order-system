@@ -10,7 +10,16 @@ use App\Livewire\Admin\Product\Edit as ProductEdit;
 use App\Livewire\Admin\Category\Index as CategoryIndex;
 use App\Livewire\Admin\Category\Create as CategoryCreate;
 use App\Livewire\Admin\Category\Edit as CategoryEdit;
+use App\Livewire\User\Checkout;
+use App\Livewire\User\OrderHistory;
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/checkout', Checkout::class)->name('checkout');
+    Route::get('/thank-you', function () {
+        return view('thank-you');
+    })->name('checkout.thankyou');
+    Route::get('/orders', OrderHistory::class)->name('user.orders');
+});
 
 Route::view('/', 'welcome');
 
@@ -38,6 +47,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/categories/create', CategoryCreate::class)->name('admin.categories.create');
     Route::get('/categories/{category}/edit', CategoryEdit::class)->name('admin.categories.edit');
     Route::delete('/categories/{category}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin.categories.destroy');
+
+    Route::get('/orders', App\Livewire\Admin\Order\Index::class)->name('admin.orders');
 });
 
 

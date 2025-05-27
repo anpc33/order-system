@@ -18,7 +18,7 @@ class CheckRole
     {
         $user = Auth::user();
         if (!$user || !$user->role || $user->role->name !== $role) {
-            abort(403, 'Access denied');
+            abort(403, 'Bạn không đủ quyền để truy cập');
         }
 
         return $next($request);

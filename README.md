@@ -1,61 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Hexigon Order System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Hexigon Order System is a modern web application for managing orders, products, categories, and users, built with **Laravel 12**, **Livewire 3**, and **Pusher** for real-time updates. The system supports both admin and user roles, providing a seamless experience for e-commerce order management.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### User Roles
+- **Admin**: Full management of users, products, categories, and orders.
+- **User**: Place orders, view order history, and cancel orders before confirmation.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Product & Category Management
+- Add, edit, and delete products and categories.
+- Organize products by categories.
 
-## Learning Laravel
+### User Management
+- Add, edit, and delete users (admin only).
+- Assign roles via the `role` or `role_id` field (1 = admin).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Order Management
+- Place orders with address and payment method selection.
+- Admin can view, search, filter, and update order statuses.
+- Order statuses: `pending` (awaiting confirmation), `confirmed`, `shipped`, `completed`, `cancelled`.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Real-time Order Status Updates
+- When an admin updates an order status, users see the change instantly (no reload needed) via **Pusher** and **Livewire broadcasting**.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Responsive UI
+- Clean, modern, and responsive design.
+- Dynamic menu based on user role: admin sees all management options, users see only relevant options.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Getting Started
 
-### Premium Partners
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/hexigon-order-system.git
+cd hexigon-order-system
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2. Install Backend Dependencies
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+- Configure your database in `.env`.
 
-## Contributing
+### 3. Install Frontend Dependencies
+```bash
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Configure Pusher for Real-time
+- Register at [Pusher](https://pusher.com/) and create a new app.
+- Add your Pusher credentials to `.env`:
+  ```env
+  BROADCAST_DRIVER=pusher
+  VITE_PUSHER_APP_KEY=your_key
+  VITE_PUSHER_APP_CLUSTER=your_cluster
+  PUSHER_APP_ID=your_app_id
+  PUSHER_APP_KEY=your_key
+  PUSHER_APP_SECRET=your_secret
+  PUSHER_APP_CLUSTER=your_cluster
+  ```
+- Rebuild frontend:
+  ```bash
+  npm run dev
+  ```
 
-## Code of Conduct
+### 5. Migrate the Database
+```bash
+php artisan migrate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 6. Run the Application
+```bash
+php artisan serve
+```
+Visit: [http://localhost:8000](http://localhost:8000)
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Demo Accounts
+
+- **Admin:**  
+  Email: admin@example.com  
+  Password: password
+
+- **User:**  
+  Email: user@example.com  
+  Password: password
+
+*(Update these credentials based on your seeders or database setup)*
+
+---
+
+## Technologies Used
+- Laravel 12
+- Livewire 3
+- TailwindCSS
+- Pusher (Realtime Broadcasting)
+- MySQL/MariaDB
+
+---
+
+## Contribution
+- Fork this repository, create a new branch, and submit a pull request for new features or bug fixes.
+- Please open an issue for suggestions or bug reports.
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

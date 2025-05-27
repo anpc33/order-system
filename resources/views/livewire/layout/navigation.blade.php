@@ -33,6 +33,26 @@ new class extends Component
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(auth()->check() && auth()->user()->role_id === 1)
+                        <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')" wire:navigate>
+                            Quản lý người dùng
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')" wire:navigate>
+                            Quản lý sản phẩm
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.index')" wire:navigate>
+                            Quản lý danh mục
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')" wire:navigate>
+                            Quản lý đơn hàng
+                        </x-nav-link>
+                    @endif
+
+                    <x-nav-link :href="route('checkout')" :active="request()->routeIs('checkout')" wire:navigate>
+                        Giỏ hàng
+                    </x-nav-link>  <x-nav-link :href="route('user.orders')" :active="request()->routeIs('user.orders')" wire:navigate>
+                        Lịch sử đơn hàng
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -84,6 +104,26 @@ new class extends Component
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if(auth()->check() && auth()->user()->role_id === 1)
+                <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')" wire:navigate>
+                    Quản lý người dùng
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')" wire:navigate>
+                    Quản lý sản phẩm
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.index')" wire:navigate>
+                    Quản lý danh mục
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')" wire:navigate>
+                    Quản lý đơn hàng
+                </x-responsive-nav-link>
+            @endif
+            <x-responsive-nav-link :href="route('checkout')" :active="request()->routeIs('checkout')" wire:navigate>
+                Giỏ hàng
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.orders')" :active="request()->routeIs('user.orders')" wire:navigate>
+                Lịch sử đơn hàng
+            </x-responsive-nav-link>    
         </div>
 
         <!-- Responsive Settings Options -->
