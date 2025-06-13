@@ -19,8 +19,6 @@ COPY . .
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Permissions
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache /var/www/public/build
 
 # Install Node.js & npm
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
@@ -35,3 +33,7 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Start
 CMD ["entrypoint.sh"]
+
+# Permissions (tạo build nếu chưa có để tránh lỗi)
+RUN mkdir -p /var/www/public/build && \
+    chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache /var/www/public/build
