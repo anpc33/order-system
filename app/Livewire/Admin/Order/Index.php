@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Order;
 use Livewire\Component;
 use App\Models\Order;
 use Livewire\WithPagination;
+use App\Events\OrderUpdated;
 
 class Index extends Component
 {
@@ -75,6 +76,10 @@ class Index extends Component
         $this->selectedOrder->update([
             'status' => $this->newStatus
         ]);
+
+        // Gửi event broadcast trước khi reset selectedOrder
+        event(new OrderUpdated($this->selectedOrder));
+
         $this->dispatch('orderStatusUpdated', orderId: $this->selectedOrder->id, status: $this->newStatus);
         $this->closeUpdateStatus();
         session()->flash('success', 'Cập nhật trạng thái đơn hàng thành công!');

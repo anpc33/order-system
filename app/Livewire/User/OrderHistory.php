@@ -15,8 +15,7 @@ class OrderHistory extends Component
     public $showOrderDetails = false;
 
     protected $listeners = [
-        'orderStatusUpdated' => '$refresh',
-        'orderCancelled' => '$refresh'
+        'echo:orders,OrderUpdated' => '$refresh'
     ];
 
     public function viewOrderDetails($orderId)
@@ -54,7 +53,7 @@ class OrderHistory extends Component
 
     public function getStatusBadgeClass($status)
     {
-        return match($status) {
+        return match ($status) {
             'pending' => 'bg-yellow-100 text-yellow-800',
             'processing' => 'bg-blue-100 text-blue-800',
             'shipped' => 'bg-purple-100 text-purple-800',
@@ -66,7 +65,7 @@ class OrderHistory extends Component
 
     public function getStatusText($status)
     {
-        return match($status) {
+        return match ($status) {
             'pending' => 'Chờ xử lý',
             'processing' => 'Đang xử lý',
             'shipped' => 'Đang giao hàng',

@@ -12,6 +12,7 @@ use App\Livewire\Admin\Category\Create as CategoryCreate;
 use App\Livewire\Admin\Category\Edit as CategoryEdit;
 use App\Livewire\User\Checkout;
 use App\Livewire\User\OrderHistory;
+use App\Http\Controllers\Admin\DashboardController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', Checkout::class)->name('checkout');
@@ -23,9 +24,12 @@ Route::middleware(['auth'])->group(function () {
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// Route::view('dashboard', 'dashboard')
+//     ->middleware(['auth', 'verified'])
+//     ->name('dashboard');
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
