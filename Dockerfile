@@ -2,8 +2,8 @@ FROM php:8.2-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    zip unzip git curl libpq-dev libzip-dev libonig-dev libxml2-dev \
-    && docker-php-ext-install pdo pdo_mysql zip
+    libpq-dev \
+    && docker-php-ext-install pdo_pgsql pgsql
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -23,6 +23,6 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
-
+RUN npm install && npm run build
 # Start
 CMD ["entrypoint.sh"]
