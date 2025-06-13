@@ -1,28 +1,28 @@
 FROM php:8.2-fpm
 
-# Cài các dependency PHP cần thiết
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential libpng-dev libjpeg-dev libonig-dev libxml2-dev zip unzip git curl \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    zip unzip git curl libpq-dev libzip-dev libonig-dev libxml2-dev \
+    && docker-php-ext-install pdo pdo_mysql zip
 
-# Copy Composer từ container chính thức
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Thiết lập thư mục làm việc
+# Set working directory
 WORKDIR /var/www
 
-# Copy toàn bộ source code
+# Copy source code
 COPY . .
 
-# Copy file env nếu cần (nếu bạn dùng CI/CD có thể tạo lệnh riêng)
-# COPY .env.production .env
-
-# Cài Composer (chạy trong môi trường production)
+# Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# CHÚ Ý: npm install + build phải làm ngoài container!
+# Permissions
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# Cấp quyền cho Laravel
-RUN chmod -R 775 storage bootstrap/cache
+# Copy entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-CMD ["php-fpm"]
+# Start
+CMD ["entrypoint.sh"]
