@@ -1,4 +1,4 @@
-# Hexigon Order System
+#  Order System
 
 Hexigon Order System is a modern web application for managing orders, products, categories, and users, built with **Laravel 12**, **Livewire 3**, and **Pusher** for real-time updates. The system supports both admin and user roles, providing a seamless experience for e-commerce order management.
 
