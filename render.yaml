@@ -1,29 +1,43 @@
 services:
   - type: web
-    name: laravel-app
+    name: hexigon-laravel-app
     env: docker
     plan: free
+    repo: https://github.com/anpc33/order-system
     dockerfilePath: ./Dockerfile
-    buildCommand: ""
-    startCommand: ""
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_KEY
-        generateValue: true
-      - key: APP_DEBUG
-        value: false
-      - key: APP_URL
-        value: https://your-app.onrender.com
+        sync: false
       - key: DB_CONNECTION
-        value: mysql
+        value: pgsql
       - key: DB_HOST
-        value: your-db-host
+        fromDatabase:
+            name: hexigon-order-system
+            property: host
       - key: DB_PORT
-        value: 3306
+        fromDatabase:
+            name: hexigon-order-system
+            property: port
       - key: DB_DATABASE
-        value: your-db-name
+        fromDatabase:
+            name: hexigon-order-system
+            property: database
       - key: DB_USERNAME
-        value: your-db-user
+        fromDatabase:
+            name: hexigon-order-system
+            property: user
       - key: DB_PASSWORD
-        value: your-db-pass
+        fromDatabase:
+            name: hexigon-order-system
+            property: password
+
+  - type: worker
+    name: queue-worker
+    env: docker
+    repo: https://github.com/anpc33/order-system
+    dockerfilePath: ./Dockerfile
+    startCommand: "php artisan queue:work"
+    envVars:
+      - fromGroup: hexigon-laravel-app
