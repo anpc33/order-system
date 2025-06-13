@@ -1,4 +1,5 @@
 #!/bin/bash
+php artisan optimize:clear
 
 # Migrate & Seed (nếu cần)
 php artisan migrate --force
