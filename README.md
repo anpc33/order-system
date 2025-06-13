@@ -1,4 +1,4 @@
-# Hexigon Order System
+#  Order System
 
 Hexigon Order System là ứng dụng web quản lý đơn hàng hiện đại, xây dựng bằng **Laravel 12**, **Livewire 3**, **Vite** và **Pusher** cho realtime. Hệ thống hỗ trợ phân quyền Admin/User, quản lý sản phẩm, danh mục, người dùng, đơn hàng và cập nhật trạng thái đơn hàng realtime.
 
