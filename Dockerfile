@@ -25,7 +25,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs
 
 # Build frontend assets
-RUN npm install && npm run build
+RUN npm install && NODE_ENV=production npm run build
 
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
