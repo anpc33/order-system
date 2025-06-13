@@ -24,8 +24,8 @@ RUN composer install --no-dev --optimize-autoloader
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs
 
-# Build frontend assets
-RUN npm install && NODE_ENV=production npm run build
+# Install dependencies and build assets
+RUN npm install && npm run build
 
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
@@ -37,3 +37,5 @@ CMD ["entrypoint.sh"]
 # Permissions (tạo build nếu chưa có để tránh lỗi)
 RUN mkdir -p /var/www/public/build && \
     chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache /var/www/public/build
+RUN chown -R www-data:www-data /var/www/public/build
+RUN ls -l /var/www/public/build
