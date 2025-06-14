@@ -1,42 +1,31 @@
 FROM php:8.2-fpm
 
-# Install system dependencies
+# Cài các thư viện hệ thống cần thiết
 RUN apt-get update && apt-get install -y \
-    git \
-    libpq-dev \
-    curl \
-    && docker-php-ext-install pdo_pgsql pgsql
+    git unzip zip curl libpng-dev libonig-dev libxml2-dev \
+    libzip-dev libjpeg-dev libfreetype6-dev libicu-dev \
+    libmcrypt-dev default-mysql-client \
+    libssl-dev pkg-config
 
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Set working directory
-WORKDIR /var/www
-
-# Copy source code
-COPY . .
-
-# Install Laravel dependencies
-RUN composer install --no-dev --optimize-autoloader
-
+# Cài extensions Laravel cần
 RUN docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl bcmath
 
-# Install Node.js & npm
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs
+# Cài Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install dependencies and build assets
-RUN npm install && npm run build
+# Tạo thư mục làm việc
+WORKDIR /var/www
 
-# Copy entrypoint script
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+# Copy toàn bộ code vào
+COPY . .
 
-# Start
-CMD ["entrypoint.sh"]
+# Cài Composer & frontend
+RUN composer install --no-dev --optimize-autoloader \
+ && npm install \
+ && npm run build
 
-# Permissions (tạo build nếu chưa có để tránh lỗi)
-RUN mkdir -p /var/www/public/build && \
-    chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache /var/www/public/build
-RUN chown -R www-data:www-data /var/www/public/build
-RUN ls -l /var/www/public/build
+# Set quyền cho Laravel
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
+# Lệnh khi container khởi động
+CMD php artisan migrate --force && php-fpm
