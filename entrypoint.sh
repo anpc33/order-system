@@ -21,5 +21,5 @@ php artisan db:seed --force
 # Start queue worker (in background)
 php artisan queue:work --tries=3 &
 
-# Serve Laravel app on 0.0.0.0:8000 using built-in PHP server
-php -S 0.0.0.0:8000 -t public
+# Start the web server
+php artisan serve --host=0.0.0 --port=8000 --piblic
