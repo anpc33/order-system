@@ -18,8 +18,7 @@ php artisan storage:link
 php artisan migrate --force
 php artisan db:seed --force
 
+# Start the web server
+php artisan serve --host=0.0.0 --port=8000
 # Start queue worker (in background)
 php artisan queue:work --tries=3 &
-
-# Start the web server
-php artisan serve --host=0.0.0 --port=8000 --piblic
