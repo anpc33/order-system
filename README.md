@@ -1,12 +1,28 @@
-# Hexigon Order System (v2)
+#  Order System (v2)
 
-Hexigon Order System là ứng dụng web hiện đại quản lý đơn hàng, sản phẩm, danh mục và người dùng, xây dựng với **Laravel 12**, **Livewire 3**, **TailwindCSS** và **Pusher** cho realtime. Hệ thống hỗ trợ phân quyền (admin/user), giao diện responsive và cập nhật trạng thái đơn hàng theo thời gian thực.
+ Order System là ứng dụng web hiện đại quản lý đơn hàng, sản phẩm, danh mục và người dùng, xây dựng với **Laravel 12**, **Livewire 3**, **TailwindCSS** và **Pusher** cho realtime. Hệ thống hỗ trợ phân quyền (admin/user), giao diện responsive và cập nhật trạng thái đơn hàng theo thời gian thực.
 
 ---
 
 ## 🚀 Demo Production
 
 👉 [Dùng thử tại đây (Production)](https://order-system-production-bd9c.up.railway.app)
+
+---
+
+## 📸 Ảnh Demo
+
+### Giao diện Dashboard (Desktop)
+<img src="docs/dashboard-desktop.png" width="800"/>
+
+### Giao diện Dashboard (Mobile)
+<img src="docs/dashboard-mobile.png" width="350"/>
+
+### Thêm sản phẩm mới
+<img src="docs/add-product.png" width="800"/>
+
+### Quản lý người dùng
+<img src="docs/user-management.png" width="800"/>
 
 ---
 
@@ -80,7 +96,12 @@ npm install
 php artisan migrate --seed
 ```
 
-### 6. Chạy ứng dụng
+### 6. Tạo symlink để truy cập ảnh upload
+```bash
+php artisan storage:link
+```
+
+### 7. Chạy ứng dụng
 ```bash
 php artisan serve
 ```
@@ -119,7 +140,22 @@ Truy cập: [http://localhost:8000](http://localhost:8000)
 
 ---
 
-## License
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+> Đổi tên file ảnh trong README cho đúng với tên file thực tế bạn đã upload.> Để ảnh hiển thị trên GitHub, hãy đặt các file ảnh vào thư mục `docs/` hoặc `public/images/` và commit cùng repo.  > **Lưu ý:**  ---👉 [https://order-system-production-bd9c.up.railway.app](https://order-system-production-bd9c.up.railway.app)**Phiên bản: v2 - Đã deploy production, sẵn sàng cho nhà tuyển dụng test tại:**  ---Dự án sử dụng giấy phép [MIT license](https://opensource.org/licenses/MIT).## License## License
 
 Dự án sử dụng giấy phép [MIT license](https://opensource.org/licenses/MIT).
 
@@ -127,3 +163,9 @@ Dự án sử dụng giấy phép [MIT license](https://opensource.org/licenses/
 
 **Phiên bản: v2 - Đã deploy production, sẵn sàng cho nhà tuyển dụng test tại:**  
 👉 [https://order-system-production-bd9c.up.railway.app](https://order-system-production-bd9c.up.railway.app)
+
+---
+
+> **Lưu ý:**  
+> Để ảnh hiển thị trên GitHub, hãy đặt các file ảnh vào thư mục `docs/` hoặc `public/images/` và commit cùng repo.  
+> Đổi tên file ảnh trong README cho đúng với tên file thực tế bạn đã upload.
