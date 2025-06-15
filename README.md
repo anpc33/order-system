@@ -1,61 +1,66 @@
-#  Order System
+# Hexigon Order System (v2)
 
-Hexigon Order System is a modern web application for managing orders, products, categories, and users, built with **Laravel 12**, **Livewire 3**, and **Pusher** for real-time updates. The system supports both admin and user roles, providing a seamless experience for e-commerce order management.
-
----
-
-## Features
-
-### User Roles
-- **Admin**: Full management of users, products, categories, and orders.
-- **User**: Place orders, view order history, and cancel orders before confirmation.
-
-### Product & Category Management
-- Add, edit, and delete products and categories.
-- Organize products by categories.
-
-### User Management
-- Add, edit, and delete users (admin only).
-- Assign roles via the `role` or `role_id` field (1 = admin).
-
-### Order Management
-- Place orders with address and payment method selection.
-- Admin can view, search, filter, and update order statuses.
-- Order statuses: `pending` (awaiting confirmation), `confirmed`, `shipped`, `completed`, `cancelled`.
-
-### Real-time Order Status Updates
-- When an admin updates an order status, users see the change instantly (no reload needed) via **Pusher** and **Livewire broadcasting**.
-
-### Responsive UI
-- Clean, modern, and responsive design.
-- Dynamic menu based on user role: admin sees all management options, users see only relevant options.
+Hexigon Order System là ứng dụng web hiện đại quản lý đơn hàng, sản phẩm, danh mục và người dùng, xây dựng với **Laravel 12**, **Livewire 3**, **TailwindCSS** và **Pusher** cho realtime. Hệ thống hỗ trợ phân quyền (admin/user), giao diện responsive và cập nhật trạng thái đơn hàng theo thời gian thực.
 
 ---
 
-## Getting Started
+## 🚀 Demo Production
 
-### 1. Clone the Repository
+👉 [Dùng thử tại đây (Production)](https://order-system-production-bd9c.up.railway.app)
+
+---
+
+## Tính năng nổi bật
+
+- **Phân quyền:**  
+  - **Admin:** Quản lý toàn bộ người dùng, sản phẩm, danh mục, đơn hàng.
+  - **User:** Đặt hàng, xem lịch sử, hủy đơn trước khi xác nhận.
+
+- **Quản lý sản phẩm & danh mục:**  
+  - Thêm, sửa, xóa sản phẩm/danh mục.
+  - Sắp xếp sản phẩm theo danh mục.
+
+- **Quản lý người dùng:**  
+  - Thêm, sửa, xóa người dùng (admin).
+  - Gán quyền qua trường `role` hoặc `role_id` (1 = admin).
+
+- **Quản lý đơn hàng:**  
+  - Đặt hàng với địa chỉ, phương thức thanh toán.
+  - Admin tìm kiếm, lọc, cập nhật trạng thái đơn.
+  - Trạng thái: `pending`, `confirmed`, `shipped`, `completed`, `cancelled`.
+
+- **Realtime (Pusher + Livewire):**  
+  - Khi admin cập nhật trạng thái đơn, user thấy ngay không cần reload.
+
+- **Giao diện responsive:**  
+  - Thiết kế hiện đại, menu động theo quyền.
+
+---
+
+## Hướng dẫn cài đặt
+
+### 1. Clone dự án
 ```bash
 git clone https://github.com/your-username/hexigon-order-system.git
 cd hexigon-order-system
 ```
 
-### 2. Install Backend Dependencies
+### 2. Cài đặt backend
 ```bash
 composer install
 cp .env.example .env
 php artisan key:generate
 ```
-- Configure your database in `.env`.
+- Cấu hình database trong `.env`.
 
-### 3. Install Frontend Dependencies
+### 3. Cài đặt frontend
 ```bash
 npm install
 ```
 
-### 4. Configure Pusher for Real-time
-- Register at [Pusher](https://pusher.com/) and create a new app.
-- Add your Pusher credentials to `.env`:
+### 4. Cấu hình Pusher realtime
+- Đăng ký [Pusher](https://pusher.com/) và tạo app mới.
+- Thêm thông tin vào `.env`:
   ```env
   BROADCAST_DRIVER=pusher
   VITE_PUSHER_APP_KEY=your_key
@@ -65,25 +70,25 @@ npm install
   PUSHER_APP_SECRET=your_secret
   PUSHER_APP_CLUSTER=your_cluster
   ```
-- Rebuild frontend:
+- Build lại frontend:
   ```bash
-  npm run dev
+  npm run build
   ```
 
-### 5. Migrate the Database
+### 5. Khởi tạo database
 ```bash
-php artisan migrate
+php artisan migrate --seed
 ```
 
-### 6. Run the Application
+### 6. Chạy ứng dụng
 ```bash
 php artisan serve
 ```
-Visit: [http://localhost:8000](http://localhost:8000)
+Truy cập: [http://localhost:8000](http://localhost:8000)
 
 ---
 
-## Demo Accounts
+## Tài khoản demo
 
 - **Admin:**  
   Email: admin@example.com  
@@ -93,25 +98,32 @@ Visit: [http://localhost:8000](http://localhost:8000)
   Email: user@example.com  
   Password: password
 
-*(Update these credentials based on your seeders or database setup)*
+*(Cập nhật lại nếu bạn thay đổi seed hoặc dữ liệu)*
 
 ---
 
-## Technologies Used
+## Công nghệ sử dụng
 - Laravel 12
 - Livewire 3
 - TailwindCSS
-- Pusher (Realtime Broadcasting)
+- Pusher (Realtime)
 - MySQL/MariaDB
 
 ---
 
-## Contribution
-- Fork this repository, create a new branch, and submit a pull request for new features or bug fixes.
-- Please open an issue for suggestions or bug reports.
+## Đóng góp & Liên hệ
+
+- Fork repo, tạo branch mới và gửi pull request nếu muốn đóng góp.
+- Mở issue nếu có đề xuất hoặc báo lỗi.
+- Liên hệ qua [LinkedIn/GitHub của bạn] nếu cần trao đổi thêm.
 
 ---
 
 ## License
 
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Dự án sử dụng giấy phép [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+**Phiên bản: v2 - Đã deploy production, sẵn sàng cho nhà tuyển dụng test tại:**  
+👉 [https://order-system-production-bd9c.up.railway.app](https://order-system-production-bd9c.up.railway.app)
